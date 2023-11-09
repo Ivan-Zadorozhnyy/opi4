@@ -2,9 +2,9 @@ name: Python CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -55,6 +55,10 @@ jobs:
     - name: Run unittests with coverage
       run: |
         coverage run -m unittest discover
+
+    - name: Combine coverage data
+      run: |
+        coverage combine
 
     - name: Generate coverage report
       run: |
