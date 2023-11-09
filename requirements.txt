@@ -4,5 +4,4 @@ uuid
 datetime
 Flask
 flake8
-flake8-naming
 
