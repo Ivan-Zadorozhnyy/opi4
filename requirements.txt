@@ -2,7 +2,7 @@ flask_testing
 selenium
 uuid
 datetime
-Flask==2.1.0
-flake8==4.0.1
-flake8-naming==0.20.0
+Flask
+flake8
+flake8-naming
 
