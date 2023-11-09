@@ -1,30 +1,50 @@
+# editorconfig.org
+
+# top-most EditorConfig file
 root = true
 
-# Unix-style newlines with a newline ending every file
+# Default settings:
+# A newline ending every file
+# Use 4 spaces as indentation
 [*]
-end_of_line = lf
 insert_final_newline = true
-
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{js,py}]
-charset = utf-8
-
-# 4 space indentation
-[*.py]
 indent_style = space
 indent_size = 4
 
-# Tab indentation (no size specified)
-[Makefile]
-indent_style = tab
+# Python files
+[*.py]
+charset = utf-8
+# 4 space indentation
+indent_style = space
+indent_size = 4
+# Trim trailing whitespace
+trim_trailing_whitespace = true
+# Use Unix-style newlines
+end_of_line = lf
 
-# Indentation override for all JS under lib directory
-[lib/**.js]
+# JSON files often use 2 spaces
+[*.json]
 indent_style = space
 indent_size = 2
 
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
+# Shell scripts
+[*.sh]
+end_of_line = lf
 indent_style = space
 indent_size = 2
+trim_trailing_whitespace = true
+
+# Batch files
+[*.{cmd, bat}]
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+
+# YAML files, often used for CI configurations like GitHub Actions
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Restrict Python specific updates to python files
+# Pytest, coverage commands, or flake8 configurations should be updated in their respective configuration files or inline commands in CI configurations
+
