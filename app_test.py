@@ -51,6 +51,15 @@ class FlaskTestCase(TestCase):
                 any(user["userId"] == user_id for user in users_data["data"])
             )
 
+    def test_update_valid_user(self):
+        user_id = users_data["data"][0]["userId"]
+        new_data = {"newKey": "newValue"}
+        response = self.client.put(f"/api/user/update?userId={user_id}", data=json.dumps(new_data),
+                                   content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("newKey", response.json)
+        self.assertEqual(response.json["newKey"], "newValue")
+
 
 # E2E Tests
 class FlaskE2ETestCase(unittest.TestCase):
