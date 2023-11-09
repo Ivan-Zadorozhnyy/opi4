@@ -23,15 +23,16 @@ for i in range(20):
     }
     users_data['data'].append(user)
 
+
 @app.route('/api/stats/user/total', methods=['GET'])
 def get_total_time_online():
     user_id = request.args.get('userId')
-    user = next((u for u in users_data['data'] if u['userId'] == user_id), None)
-    if not user:
+    user1 = next((u for u in users_data['data'] if u['userId'] == user_id), None)
+    if not user1:
         return jsonify({"error": "User not found"}), 404
 
-    days_since_registration = (datetime.now() - datetime.fromisoformat(user["registrationDate"])).days
-    total_time = user["onlineTimePerWeek"] * days_since_registration / 7
+    days_since_registration = (datetime.now() - datetime.fromisoformat(user1["registrationDate"])).days
+    total_time = user1["onlineTimePerWeek"] * days_since_registration / 7
 
     return jsonify({"totalTime": int(total_time)})
 
@@ -39,13 +40,13 @@ def get_total_time_online():
 @app.route('/api/stats/user/average', methods=['GET'])
 def get_average_time_online():
     user_id = request.args.get('userId')
-    user = next((u for u in users_data['data'] if u['userId'] == user_id), None)
+    user2 = next((u for u in users_data['data'] if u['userId'] == user_id), None)
 
-    if not user:
+    if not user2:
         return jsonify({"error": "User not found"}), 404
 
-    days_since_registration = (datetime.now() - datetime.fromisoformat(user["registrationDate"])).days
-    total_time = user["onlineTimePerWeek"] * days_since_registration / 7
+    days_since_registration = (datetime.now() - datetime.fromisoformat(user2["registrationDate"])).days
+    total_time = user2["onlineTimePerWeek"] * days_since_registration / 7
 
     daily_average = total_time / days_since_registration
     weekly_average = daily_average * 7
@@ -55,22 +56,23 @@ def get_average_time_online():
         "weeklyAverage": int(weekly_average)
     })
 
+
 @app.route('/api/user/forget', methods=['POST'])
 def forget_user():
     user_id = request.args.get('userId')
-    user = next((u for u in users_data['data'] if u['userId'] == user_id), None)
+    user3 = next((u for u in users_data['data'] if u['userId'] == user_id), None)
 
-    if not user:
+    if not user3:
         return jsonify({"error": "User not found"}), 404
 
-    users_data['data'].remove(user)
+    users_data['data'].remove(user3)
 
     return jsonify({"userId": user_id})
 
 
 @app.route('/api/users/ids', methods=['GET'])
 def get_user_ids():
-    user_ids = [user['userId'] for user in users_data['data']]
+    user_ids = [user4['userId'] for user4 in users_data['data']]
     return jsonify(user_ids)
 
 
